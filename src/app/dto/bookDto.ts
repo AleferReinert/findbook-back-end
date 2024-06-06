@@ -12,7 +12,8 @@ const bookSchema = z.object({
 	longDescription: z.string().optional(),
 	status: z.string(),
 	authors: z.array(z.string()),
-	categories: z.array(z.string())
+	categories: z.array(z.string()),
+	embeddings: z.array(z.number()).optional()
 })
 
 type Book = z.infer<typeof bookSchema>

@@ -4,15 +4,28 @@ Back-end do projeto [Findbook](https://github.com/AleferReinert/findbook) desenv
 
 ## Como rodar
 
-### 1. Configure a variável de ambiente para conexão do banco de dados
+### 1. Configure as variáveis de ambiente
 
-- Crie o arquivo _.env_
+```
+# .env
+DATABASE_URL = ""
+OPENAI_API_SECRET_KEY = ""
+```
+
+#### DATABASE_URL
+
 - Acesse [Mongo Atlas](https://cloud.mongodb.com])
-- Navegue até Overview > Clusters > Cluster0
-- Clique em _Connect_, depois em _Compass_
+- Navegue até `Overview > Clusters > Cluster0`
+- Clique em `Connect`, depois em `Compass`
 - Copie a string da conexão
-- Em _.env_, crie DATABASE_URL com o valor copiado
-- Altere \<password> para o password do usuário
+- Cole no valor de DATABASE_URL
+- Substitua \<password> pela senha do usuário (findbook) do Mongo Atlas
+
+#### OPENAI_API_SECRET_KEY
+
+São gerenciadas em [OpenAI Platform](https://platform.openai.com/organization/api-keys), mas não é possível copiar uma secret_key já existente.
+
+Estão salvas no meu lugar privado.
 
 ### 2. Inicie o ambiente de desenvolvimento
 
