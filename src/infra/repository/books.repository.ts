@@ -25,9 +25,46 @@ class BooksRepositoryMongoose implements BooksRepository {
 		return books.save()
 	}
 
-	async find(dto: bookDto): Promise<BookEntity | null> {
-		const response = await Books.findOne({ title: dto.title })
-		return response ? response.toObject() : null
+	async find(search: string, embedding: number[], matchedBooks: any): Promise<BookEntity[] | null> {
+		const response = await Books.aggregate([
+			{
+				$vectorSearch: {
+					index: 'vector_index',
+					path: 'embeddings',
+					queryVector: embedding,
+					numCandidates: 150,
+					limit: 10
+				}
+			},
+			{
+				$match: {
+					$or: [
+						{ title: new RegExp(matchedBooks.title, 'i') },
+						{ authors: new RegExp(matchedBooks.authors, 'i') },
+						{ categories: new RegExp(matchedBooks.categories, 'i') },
+						{ longDescription: new RegExp(matchedBooks.longDescription, 'i') }
+					]
+				}
+			},
+			{
+				$project: {
+					_id: 1,
+					title: 1,
+					isbn: 1,
+					pageCount: 1,
+					publishedDate: 1,
+					thumbnailUrl: 1,
+					shortDescription: 1,
+					longDescription: 1,
+					status: 1,
+					authors: 1,
+					categories: 1,
+					score: { $meta: 'vectorSearchScore' }
+				}
+			}
+		])
+		// console.log('infra books.repository.ts response: ', response)
+		return response
 	}
 
 	async update(dto: bookDto, id: string): Promise<BookEntity | null> {
