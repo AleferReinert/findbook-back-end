@@ -63,7 +63,6 @@ class BooksRepositoryMongoose implements BooksRepository {
 				}
 			}
 		])
-		// console.log('infra books.repository.ts response: ', response)
 		return response
 	}
 

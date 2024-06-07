@@ -9,9 +9,11 @@ export async function searchOpenAI(input: string): Promise<GptResponse> {
 
 	try {
 		const response = await openAi.chat.completions.create({
-			model: 'gpt-3.5-turbo-1106',
-			response_format: { type: 'json_object' },
 			messages: [
+				{
+					role: 'user',
+					content: input
+				},
 				{
 					role: 'system',
 					content: `
@@ -23,19 +25,15 @@ export async function searchOpenAI(input: string): Promise<GptResponse> {
 						- Identificar se a mensagem do usuário corresponde a alguma categoria da lista de categorias abaixo em português ou inglês
 						- Realizar uma busca por title, authors, categories e longDescription
 						- Retorne sempre o primeiro autor da lista de authors
-						- Se solicitado uma categoria, retorne apenas livros que contenham a categoria solicitada. Se não houver livros na categoria solicitada, retorne uma mensagem informando que não encontrou livros na categoria solicitada.
-						- Instruções de formato de saída para JSON: {title: string, authors: string, categories: string, longDescription: string}
-					`
-				},
-				{
-					role: 'user',
-					content: input
+						- Instruções de formato de saída para JSON: {title: string, authors: string, categories: string, longDescription: string}`
 				}
-			]
+			],
+			model: 'gpt-3.5-turbo-1106',
+			response_format: { type: 'json_object' }
 		})
-		console.log('searchOpenAI response: ', response)
-		const output = JSON.parse(response.choices[0].message.content!)
-		return output
+
+		const contentOfResponse = response.choices[0].message.content!
+		return JSON.parse(contentOfResponse)
 	} catch (error: any) {
 		throw new HttpException(500, error.message)
 	}

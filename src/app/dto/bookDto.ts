@@ -5,7 +5,7 @@ const bookSchema = z.object({
 	isbn: z.string(),
 	pageCount: z.number(),
 	publishedDate: z.object({
-		date: z.date()
+		date: z.string()
 	}),
 	thumbnailUrl: z.string(),
 	shortDescription: z.string().optional(),

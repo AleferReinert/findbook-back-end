@@ -13,7 +13,7 @@ export const routerAdapter = (controller: any, method: string) => {
 
 		const httpResponse = await controller[method](httpRequest)
 
-		if (httpResponse.status > 200 && httpResponse < 299) {
+		if (httpResponse.status >= 200 && httpResponse.status <= 299) {
 			return res.status(httpResponse.status).json(httpResponse)
 		} else {
 			return errorMiddleware(httpResponse, req, res, next)

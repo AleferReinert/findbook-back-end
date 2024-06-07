@@ -3,7 +3,7 @@ import { searchOpenAI } from '../../infra/services/openai/search'
 import { bookDto } from '../dto/bookDto'
 import { BooksRepository } from '../repository/books.repository'
 
-export type GptResponse = {
+export interface GptResponse {
 	title: string
 	authors: string
 	categories: string
@@ -17,74 +17,44 @@ class BooksUseCase {
 		this.booksRepository = booksRepository
 	}
 
-	async createBook(dto: bookDto) {
+	private async generateBookEmbedding(dto: bookDto) {
 		const dataEmbedding = {
 			title: dto.title,
 			categories: dto.categories,
 			authors: dto.authors,
 			longDescription: dto.longDescription
 		}
-		const generateEmbedding = await generateEmbeddings(JSON.stringify(dataEmbedding))
-
-		this.booksRepository.create({
-			...dto,
-			embeddings: generateEmbedding
-		})
+		return await generateEmbeddings(JSON.stringify(dataEmbedding))
 	}
+
+	async createBook(dto: bookDto) {
+		const embeddings = await this.generateBookEmbedding(dto)
+		return this.booksRepository.create({ ...dto, embeddings })
+	}
+
 	async searchBooks(search: string) {
-		const generateEmbedding = await generateEmbeddings(search)
+		const embeddings = await generateEmbeddings(search)
 		const searchResponse: GptResponse = await searchOpenAI(search)
 		const matchedBooks = this.matchedBooks(searchResponse)
 
-		console.log('matchedBooks: ', matchedBooks)
-		return this.booksRepository.find(search, generateEmbedding, matchedBooks)
+		const response = await this.booksRepository.find(search, embeddings, matchedBooks)
+		return response
 	}
-	async updateBook(dto: bookDto, id: string) {
-		const dataEmbedding = {
-			title: dto.title,
-			categories: dto.categories,
-			authors: dto.authors,
-			longDescription: dto.longDescription
-		}
-		const generateEmbedding = await generateEmbeddings(JSON.stringify(dataEmbedding))
 
-		this.booksRepository.update(
-			{
-				...dto,
-				embeddings: generateEmbedding
-			},
-			id
-		)
+	async updateBook(dto: bookDto, id: string) {
+		const embeddings = await this.generateBookEmbedding(dto)
+		return this.booksRepository.update({ ...dto, embeddings }, id)
 	}
 
 	private matchedBooks(search: GptResponse): Record<string, any> {
-		const matchedBooks = { $match: {} }
+		const matchCriteria: Record<string, any> = {}
 
-		if (search.title) {
-			matchedBooks.$match = {
-				title: search.title
-			}
-		}
+		if (search.title) matchCriteria.title = search.title
+		if (search.authors) matchCriteria.authors = search.authors
+		if (search.categories) matchCriteria.categories = search.categories
+		if (search.longDescription) matchCriteria.longDescription = search.longDescription
 
-		if (search.authors) {
-			matchedBooks.$match = {
-				authors: search.authors
-			}
-		}
-
-		if (search.categories) {
-			matchedBooks.$match = {
-				categories: search.categories
-			}
-		}
-
-		if (search.longDescription) {
-			matchedBooks.$match = {
-				longDescription: search.longDescription
-			}
-		}
-
-		return matchedBooks
+		return { $match: matchCriteria }
 	}
 }
 
