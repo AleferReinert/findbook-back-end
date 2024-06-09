@@ -1,7 +1,8 @@
+import { BookRoutes } from '../../src/infra/routes/books.routes'
+
 const express = require('express')
 const serverless = require('serverless-http')
 const cors = require('cors')
-const { BookRoutes } = require('../../dist/infra/routes/books.routes')
 
 const app = express()
 
