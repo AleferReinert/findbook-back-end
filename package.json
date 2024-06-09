@@ -2,6 +2,9 @@
 	"name": "findbook-back-end",
 	"version": "1.0.0",
 	"main": "index.js",
+	"engines": {
+		"node": ">=20.12.2"
+	},
 	"scripts": {
 		"dev": "tsx --watch src/main.ts"
 	},
@@ -15,6 +18,7 @@
 		"express": "^4.19.2",
 		"mongoose": "^8.4.1",
 		"openai": "^4.48.2",
+		"serverless-http": "^3.2.0",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
@@ -24,4 +28,3 @@
 		"typescript": "^5.4.5"
 	}
 }
-
