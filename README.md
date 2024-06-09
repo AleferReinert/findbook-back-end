@@ -25,7 +25,7 @@ OPENAI_API_SECRET_KEY = ""
 
 São gerenciadas em [OpenAI Platform](https://platform.openai.com/organization/api-keys), mas não é possível copiar uma secret_key já existente.
 
-Estão salvas no meu lugar privado.
+Estão salvas em privado.
 
 ### 2. Inicie o ambiente de desenvolvimento
 

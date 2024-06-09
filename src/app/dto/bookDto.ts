@@ -8,7 +8,7 @@ const bookSchema = z.object({
 		date: z.string()
 	}),
 	thumbnailUrl: z.string(),
-	shortDescription: z.string().optional(),
+	shortDescription: z.string().max(200).optional(),
 	longDescription: z.string().optional(),
 	status: z.string(),
 	authors: z.array(z.string()),

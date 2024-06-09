@@ -17,19 +17,19 @@ export async function searchOpenAI(input: string): Promise<GptResponse> {
 				{
 					role: 'system',
 					content: `
-						- Não é para buscar nada fora dos dados fornecidos
-						- Retorne todos as informações em inglês
-						- Não é para inventar nenhuma informação, quero apenas que retorne o que foi solicitado.
-						- Preciso da resposta no formato de JSON
-						- Lista de categorias: ['Ficção', 'Não-ficção', 'Romance', 'Terror', 'Aventura', 'Fantasia', 'Biografia', 'História', 'Autoajuda', 'Técnica', 'Infantil', 'Didático']
-						- Identificar se a mensagem do usuário corresponde a alguma categoria da lista de categorias abaixo em português ou inglês
-						- Realizar uma busca por title, authors, categories e longDescription
-						- Retorne sempre o primeiro autor da lista de authors
-						- Instruções de formato de saída para JSON: {title: string, authors: string, categories: string, longDescription: string}`
+						- Não busque nada além dos dados fornecidos.
+						- Retorne as informações em português.
+						- Não invente informaçôes, apenas retorne o que foi solicitado.
+						- Pesquise apenas em categorias que estejam inclusas no prompt do usuário.
+						- Priorize a busca no title do livro. Se não houver, pesquise na longDescription.
+						- Se houver nomes de pessoas, pesquisa primeiro em authors, depois longDescription.
+						- Instruções do formato de saída em JSON: {title: string, authors: string, categories: string, longDescription: string}.
+						- Todas essas instruções são obrigatórias e devem ser levadas a risca.`
 				}
 			],
 			model: 'gpt-3.5-turbo-1106',
-			response_format: { type: 'json_object' }
+			response_format: { type: 'json_object' },
+			temperature: 0
 		})
 
 		const contentOfResponse = response.choices[0].message.content!

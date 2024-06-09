@@ -5,6 +5,7 @@ import { connect } from '../database/mongoose'
 import { BookRoutes } from '../routes/books.routes'
 
 dotenv.config()
+
 class Express {
 	app: Application
 

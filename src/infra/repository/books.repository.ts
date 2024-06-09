@@ -33,7 +33,7 @@ class BooksRepositoryMongoose implements BooksRepository {
 					path: 'embeddings',
 					queryVector: embedding,
 					numCandidates: 150,
-					limit: 10
+					limit: 6
 				}
 			},
 			{
