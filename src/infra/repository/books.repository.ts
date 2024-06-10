@@ -20,9 +20,15 @@ const booksSchema = new mongoose.Schema({
 const Books = mongoose.model('books', booksSchema)
 
 class BooksRepositoryMongoose implements BooksRepository {
-	create(dto: bookDto) {
-		const books = new Books(dto)
-		return books.save()
+	// Verifica se já existe um livro com o id informado. Se não houver, é criado o livro.
+	async create(dto: bookDto) {
+		const existingBook = await Books.findOne({ isbn: dto.isbn })
+		if (existingBook) {
+			throw new Error('Um livro com esse ISBN já existe')
+		} else {
+			const newBooks = new Books(dto)
+			return newBooks.save()
+		}
 	}
 
 	async find(search: string, embedding: number[], matchedBooks: any): Promise<BookEntity[] | null> {
