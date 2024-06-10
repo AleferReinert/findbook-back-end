@@ -12,7 +12,7 @@ export const BookRoutes = (router: Router) => {
 	router.get('/books', routerAdapter(booksController, 'find'))
 	router.put('/books/:id', routerAdapter(booksController, 'update'))
 
-	router.get('/hello', (req, res) => {
+	router.get('/', (req, res) => {
 		res.send('Hello World')
 	})
 }

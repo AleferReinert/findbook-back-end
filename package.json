@@ -6,7 +6,8 @@
 		"node": ">=20.12.2"
 	},
 	"scripts": {
-		"dev": "tsx --watch src/main.ts"
+		"dev": "tsx --watch src/main.ts",
+		"build": "tsx src/main.ts"
 	},
 	"keywords": [],
 	"author": "",
@@ -28,3 +29,4 @@
 		"typescript": "^5.4.5"
 	}
 }
+
