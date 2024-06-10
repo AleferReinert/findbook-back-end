@@ -10,7 +10,7 @@ Back-end do projeto [findbook](https://github.com/AleferReinert/findbook), desen
 | GET         | /books    | Pesquisar por livros |
 | PUT         | /book/:id | Atualizar um livro   |
 
-Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook/blob/main/api.http).
+Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook-back-end/blob/main/api.http).
 
 ## Como rodar
 
