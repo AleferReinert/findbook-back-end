@@ -7,7 +7,7 @@ export async function connect() {
 			throw new HttpException(500, 'Missing DATABASE_URL on .env')
 		} else {
 			await mongoose.connect(process.env.DATABASE_URL)
-			console.log('Connected database!')
+			console.log('Database connected!')
 		}
 	} catch (error: any) {
 		throw new HttpException(500, error.message)

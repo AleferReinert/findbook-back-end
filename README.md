@@ -1,6 +1,16 @@
-# Findbook (back-end)
+# Findbook - back-end
 
-Back-end do projeto [Findbook](https://github.com/AleferReinert/findbook) desenvolvido durante a 4ª Semana do Herói, da Alexia Kattah.
+Back-end do projeto [findbook](https://github.com/AleferReinert/findbook), desenvolvido em express.
+
+## Endpoints
+
+| Método HTTP | Rota      | Descrição            |
+| ----------- | --------- | -------------------- |
+| POST        | /books    | Criar um novo livro  |
+| GET         | /books    | Pesquisar por livros |
+| PUT         | /book/:id | Atualizar um livro   |
+
+Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook/blob/main/api.http).
 
 ## Como rodar
 
@@ -23,9 +33,8 @@ OPENAI_API_SECRET_KEY = ""
 
 #### OPENAI_API_SECRET_KEY
 
-São gerenciadas em [OpenAI Platform](https://platform.openai.com/organization/api-keys), mas não é possível copiar uma secret_key já existente.
-
-Estão salvas em privado.
+- Obter em em [OpenAI Platform](https://platform.openai.com/organization/api-keys)
+- Não é possível copiar uma secret_key já existente.
 
 ### 2. Inicie o ambiente de desenvolvimento
 
@@ -36,8 +45,8 @@ npm run dev
 Se tudo ocorrer bem, haverá a seguinte mensagem no terminal:
 
 ```
-Server running on port 3333
-Connected database!
+Server running on port 3333...
+Database connected!
 ```
 
 ## Tecnologias Utilizadas
@@ -47,3 +56,8 @@ Connected database!
 - **dotenv**: Carrega variáveis de ambiente a partir de um arquivo `.env`.
 - **mongoose**: Biblioteca para modelagem de dados MongoDB.
 - **zod**: Biblioteca para validação e parsing de esquemas.
+- **openai**: Plataforma de inteligência artificial para desenvolvimento de modelos de linguagem.
+
+## Créditos
+
+Esse projeto foi desenvolvido durante a 4ª Semana do Herói, da Alexia Kattah.

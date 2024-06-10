@@ -24,7 +24,7 @@ class Express {
 	listen() {
 		this.app.listen(3333, () => {
 			connect()
-			console.log('Server running on port 3333')
+			console.log('Server running on port 3333...')
 		})
 	}
 }

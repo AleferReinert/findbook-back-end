@@ -1,0 +1,36 @@
+### Criar um livro
+POST http://localhost:3333/books
+Content-Type: application/json
+
+{
+    "title": "Meu livro criado",
+		"isbn": "1933988673",
+		"pageCount": 416,
+		"publishedDate": { "$date": "2009-04-01T00:00:00.000-0700" },
+		"thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg",
+		"shortDescription": "Descrição curta.",
+		"longDescription": "Descrição longa",
+		"status": "PUBLISH",
+		"authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"],
+		"categories": ["Open Source", "Mobile"]
+}
+
+### Pesquisar
+GET http://localhost:3333/books?search=javascript
+
+### Atualizar um livro (incluir o ID do livro no final da url)
+PUT http://localhost:3333/books/666742a4f64047651195a3f9
+Content-Type: application/json
+
+{
+    "title": "Meu livro atualizado",
+		"isbn": "1933988673",
+		"pageCount": 416,
+		"publishedDate": { "$date": "2009-04-01T00:00:00.000-0700" },
+		"thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg",
+		"shortDescription": "Descrição curta atualizada.",
+		"longDescription": "Descrição longa atualizada",
+		"status": "PUBLISH",
+		"authors": ["Autor atualizado"],
+		"categories": ["Atualizado"]
+}
