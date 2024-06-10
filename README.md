@@ -4,11 +4,12 @@ Back-end do projeto [findbook](https://github.com/AleferReinert/findbook), desen
 
 ## Endpoints
 
-| Método HTTP | Rota      | Descrição            |
-| ----------- | --------- | -------------------- |
-| POST        | /books    | Criar um novo livro  |
-| GET         | /books    | Pesquisar por livros |
-| PUT         | /book/:id | Atualizar um livro   |
+| Método HTTP | Rota      | Descrição           |
+| ----------- | --------- | ------------------- |
+| POST        | /books    | Cria um novo livro  |
+| GET         | /books    | Pesquisa por livros |
+| PUT         | /book/:id | Atualiza um livro   |
+| DELETE      | /book/:id | Deleta um livro     |
 
 Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook-back-end/blob/main/api.http).
 

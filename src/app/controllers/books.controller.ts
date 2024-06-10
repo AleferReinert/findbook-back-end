@@ -65,6 +65,31 @@ class BooksController {
 			}
 		}
 	}
+
+	async delete(httpRequest: HttpRequest): Promise<HttpResponse> {
+		const isbn = httpRequest.params.isbn
+
+		try {
+			const deleted = await this.booksUseCase.deleteBookByIsbn(isbn)
+
+			if (deleted) {
+				return {
+					status: 200,
+					message: 'Book deleted'
+				}
+			} else {
+				return {
+					status: 404,
+					message: 'Book not found'
+				}
+			}
+		} catch (error: any) {
+			return {
+				status: 400,
+				message: error.message
+			}
+		}
+	}
 }
 
 export { BooksController }

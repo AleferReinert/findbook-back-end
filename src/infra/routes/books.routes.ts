@@ -8,11 +8,10 @@ export const BookRoutes = (router: Router) => {
 	const booksUseCase = new BooksUseCase(new BooksRepositoryMongoose())
 	const booksController = new BooksController(booksUseCase)
 
+	router.get('/', (req, res) => res.send('Hello World'))
+
 	router.post('/books', routerAdapter(booksController, 'create'))
 	router.get('/books', routerAdapter(booksController, 'find'))
 	router.put('/books/:id', routerAdapter(booksController, 'update'))
-
-	router.get('/', (req, res) => {
-		res.send('Hello World')
-	})
+	router.delete('/books/:isbn', routerAdapter(booksController, 'delete'))
 }

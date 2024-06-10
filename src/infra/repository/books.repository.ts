@@ -20,11 +20,11 @@ const booksSchema = new mongoose.Schema({
 const Books = mongoose.model('books', booksSchema)
 
 class BooksRepositoryMongoose implements BooksRepository {
-	// Verifica se já existe um livro com o id informado. Se não houver, é criado o livro.
+	// Verifica se já existe um livro com o isbn informado. Se não houver, é criado o livro.
 	async create(dto: bookDto) {
 		const existingBook = await Books.findOne({ isbn: dto.isbn })
 		if (existingBook) {
-			throw new Error('Um livro com esse ISBN já existe')
+			throw new Error('A book with this isbn already exists')
 		} else {
 			const newBooks = new Books(dto)
 			return newBooks.save()
@@ -75,6 +75,16 @@ class BooksRepositoryMongoose implements BooksRepository {
 	async update(dto: bookDto, id: string): Promise<BookEntity | null> {
 		const response = await Books.findByIdAndUpdate(id, dto)
 		return response ? response.toObject() : null
+	}
+
+	async deleteByIsbn(isbn: string) {
+		try {
+			const result = await Books.deleteOne({ isbn: isbn })
+			return result.deletedCount === 1
+		} catch (error) {
+			console.error('Erro ao deletar livro por ISBN: ', error)
+			return null
+		}
 	}
 }
 

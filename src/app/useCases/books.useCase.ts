@@ -46,6 +46,14 @@ class BooksUseCase {
 		return this.booksRepository.update({ ...dto, embeddings }, id)
 	}
 
+	deleteBookByIsbn(isbn: string) {
+		try {
+			return this.booksRepository.deleteByIsbn(isbn)
+		} catch (error) {
+			return 'deleteBookByIsbn error: ' + error
+		}
+	}
+
 	private matchedBooks(search: GptResponse): Record<string, any> {
 		const matchCriteria: Record<string, any> = {}
 

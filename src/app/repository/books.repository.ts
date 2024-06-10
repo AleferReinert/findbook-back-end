@@ -9,6 +9,7 @@ abstract class BooksRepository {
 		matchedBooks: Record<string, any>
 	): Promise<BookEntity[] | null>
 	abstract update(dto: bookDto, id: string): Promise<BookEntity | null>
+	abstract deleteByIsbn(isbn: string): void
 }
 
 export { BooksRepository }

@@ -3,8 +3,8 @@ POST http://localhost:3333/books
 Content-Type: application/json
 
 {
-    "title": "Meu livro criado",
-		"isbn": "1933988673",
+    "title": "Meu livro para deletar",
+		"isbn": "666777",
 		"pageCount": 416,
 		"publishedDate": { "$date": "2009-04-01T00:00:00.000-0700" },
 		"thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg",
@@ -18,7 +18,7 @@ Content-Type: application/json
 ### Pesquisar
 GET http://localhost:3333/books?search=javascript
 
-### Atualizar um livro (incluir o ID do livro no final da url)
+### Atualizar um livro através do _id
 PUT http://localhost:3333/books/666742a4f64047651195a3f9
 Content-Type: application/json
 
@@ -34,3 +34,6 @@ Content-Type: application/json
 		"authors": ["Autor atualizado"],
 		"categories": ["Atualizado"]
 }
+
+### Deletar um livro através do isbn
+DELETE http://localhost:3333/books/1933988673
