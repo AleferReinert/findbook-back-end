@@ -1,20 +1,4 @@
-// import { BookRoutes } from '../../src/infra/routes/books.routes'
-
-// const express = require('express')
-// const serverless = require('serverless-http')
-// const cors = require('cors')
-
-// const app = express()
-
-// app.use(cors())
-// app.use(express.json())
-
-// const router = express.Router()
-// BookRoutes(router)
-
-// app.use('/.netlify/functions/server', router)
-
-// module.exports.handler = serverless(app)
+import { BookRoutes } from '../../src/infra/routes/books.routes'
 
 const serverless = require('serverless-http')
 const express = require('express')
@@ -33,10 +17,6 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 // Definir rotas
-app.get('/', (req, res) => {
-	res.send('Hello from Express on Netlify Functions!')
-})
-
-// Outras rotas aqui
+BookRoutes(app)
 
 module.exports.handler = serverless(app)
