@@ -25,7 +25,7 @@ OPENAI_API_SECRET_KEY = ""
 
 #### DATABASE_URL
 
-- Acesse [Mongo Atlas](https://cloud.mongodb.com])
+- Acesse [Mongo Atlas](https://cloud.mongodb.com)
 - Navegue até `Overview > Clusters > Cluster0`
 - Clique em `Connect`, depois em `Compass`
 - Copie a string da conexão
