@@ -2,17 +2,6 @@
 
 Back-end do projeto [findbook](https://github.com/AleferReinert/findbook), desenvolvido em express.
 
-## Endpoints
-
-| Método HTTP | Rota      | Descrição           |
-| ----------- | --------- | ------------------- |
-| POST        | /books    | Cria um novo livro  |
-| GET         | /books    | Pesquisa por livros |
-| PUT         | /book/:id | Atualiza um livro   |
-| DELETE      | /book/:id | Deleta um livro     |
-
-Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook-back-end/blob/main/api.http).
-
 ## Como rodar
 
 ### 1. Configure as variáveis de ambiente
@@ -49,6 +38,21 @@ Se tudo ocorrer bem, haverá a seguinte mensagem no terminal:
 Server running on port 3333...
 Database connected!
 ```
+
+## Endpoints
+
+| Método HTTP | Rota      | Descrição           |
+| ----------- | --------- | ------------------- |
+| POST        | /books    | Cria um novo livro  |
+| GET         | /books    | Pesquisa por livros |
+| PUT         | /book/:id | Atualiza um livro   |
+| DELETE      | /book/:id | Deleta um livro     |
+
+Os testes podem ser feitos através do arquivo [api.http](https://github.com/AleferReinert/findbook-back-end/blob/main/api.http).
+
+## Imagens
+
+Hospedadas em [Amazon S3](https://us-east-2.console.aws.amazon.com/s3/buckets/findbook).
 
 ## Tecnologias Utilizadas
 

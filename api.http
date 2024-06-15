@@ -3,16 +3,16 @@ POST http://localhost:3333/books
 Content-Type: application/json
 
 {
-    "title": "Meu livro para deletar",
-		"isbn": "666777",
-		"pageCount": 416,
-		"publishedDate": { "$date": "2009-04-01T00:00:00.000-0700" },
-		"thumbnailUrl": "https://s3.amazonaws.com/AKIAJC5RLADLUMVRPFDQ.book-thumb-images/ableson.jpg",
-		"shortDescription": "Descrição curta.",
-		"longDescription": "Descrição longa",
-		"status": "PUBLISH",
-		"authors": ["W. Frank Ableson", "Charlie Collins", "Robi Sen"],
-		"categories": ["Open Source", "Mobile"]
+  "title": "Mentes Ansiosas",
+  "isbn": "9788576847579",
+  "pageCount": 272,
+  "publishedDate": { "$date": "2019-08-29T00:00:00.000-0700" },
+  "thumbnailUrl": "https://findbook.s3.us-east-2.amazonaws.com/mentes-ansiosas.webp",
+  "shortDescription": "Um guia para lidar com a ansiedade, com ferramentas práticas e exercícios.",
+  "longDescription": "Mentes Ansiosas é um livro que aborda a ansiedade de forma clara e acessível. O autor, Dr. Augusto Cury, oferece ferramentas para lidar com os sintomas da ansiedade e aprender a controlar as emoções.",
+  "status": "PUBLISH",
+  "authors": ["Augusto Cury"],
+  "categories": ["Psicologia", "Autoajuda"]
 }
 
 ### Pesquisar
@@ -36,4 +36,4 @@ Content-Type: application/json
 }
 
 ### Deletar um livro através do isbn
-DELETE http://localhost:3333/books/1933988673
+DELETE http://localhost:3333/books/9788501072374
