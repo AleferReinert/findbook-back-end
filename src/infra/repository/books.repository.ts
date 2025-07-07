@@ -7,7 +7,7 @@ const booksSchema = new mongoose.Schema({
 	title: String,
 	isbn: String,
 	pageCount: Number,
-	publishedDate: { $date: String },
+	publishedDate: Date,
 	thumbnailUrl: String,
 	shortDescription: String,
 	longDescription: String,
@@ -74,7 +74,7 @@ class BooksRepositoryMongoose implements BooksRepository {
 
 	async update(dto: bookDto, id: string): Promise<BookEntity | null> {
 		const response = await Books.findByIdAndUpdate(id, dto)
-		return response ? response.toObject() : null
+		return response ? (response.toObject() as BookEntity) : null
 	}
 
 	async deleteByIsbn(isbn: string) {
